@@ -1,0 +1,83 @@
+import java.util.*;
+
+public class Main {
+
+	static int N, M, Q;
+	static int[][] field;
+	static final int PLANT_SEED = 1;
+	static final int COUNT_SEED = 2;
+	
+	
+	static void plantSeed(int x1,int x2,int y1,int y2,int d){
+		
+		for(int i = x1; i <= x2; i++){
+			for(int j = y1; j <= y2; j++){
+				field[i][j] = field[i][j] + d; 
+			}
+		}
+	}
+	
+	static int countSeed(int x, int y){
+		
+		return field[x][y]; 
+	}
+	
+	
+	static void initField(){
+		
+		for(int i = 0; i < N+1; i++){
+			for(int j = 0; j < M+1; j++){
+				field[i][j] = 0;
+			}
+		}
+		
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		
+		N = sc.nextInt();
+		M = sc.nextInt();
+		Q = sc.nextInt();
+		
+		field = new int[N+1][M+1];
+		initField();
+		int activate = -1;
+		
+		while(Q > 0)
+		{
+			if(sc.hasNextInt()){
+			activate = sc.nextInt();
+			}
+			
+			switch(activate){
+			
+			case PLANT_SEED:
+				int x1,x2,y1,y2,d;
+				x1 	= sc.nextInt();
+				y1	= sc.nextInt();
+				x2 	= sc.nextInt();
+				y2 	= sc.nextInt();
+				d 	= sc.nextInt();
+				Q--;
+				plantSeed(x1,x2,y1,y2,d);
+				break;
+			case COUNT_SEED:
+				int x,y;
+				x 	= sc.nextInt();
+				y 	= sc.nextInt();
+				Q--;
+				System.out.println(countSeed(x,y));
+				break;
+			}
+		}		
+	
+		
+		sc.close();
+	}
+	
+	
+}
+
